@@ -33,7 +33,7 @@ export default Smurf;
 Smurf.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  age: PropTypes.string.isRequired,
+  age: PropTypes.number.isRequired,
   height: PropTypes.string.isRequired,
   deleteSmurf: PropTypes.func.isRequired
 };

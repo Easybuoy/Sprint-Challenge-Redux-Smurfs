@@ -1,25 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { getSmurfs } from "../../actions/";
+import { getSmurfs, deleteSmurf } from "../../actions/";
 import Smurf from "./Smurf";
 
 class Smurfs extends Component {
   componentDidMount() {
     this.props.getSmurfs();
-    // console.log(this.props);
+
   }
 
   deleteSmurf = id => {
     if (window.confirm("Are you sure you want to delete this smurf")) {
-      //   axios
-      //     .delete(`http://localhost:3333/smurfs/${id}`)
-      //     .then(res => this.setState({ smurfs: res.data }));
+      this.props.deleteSmurf(id);
     }
   };
 
   render() {
-    console.log(this.props.smurfs);
     const { smurfs } = this.props.smurfs;
     return (
       <div className="Smurfs">
@@ -30,7 +27,7 @@ class Smurfs extends Component {
             <Smurf
               name={smurf.name}
               id={smurf.id}
-              age={smurf.age}
+              age={parseInt(smurf.age)}
               height={smurf.height}
               key={smurf.id}
               deleteSmurf={this.deleteSmurf}
@@ -52,5 +49,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getSmurfs }
+  { getSmurfs, deleteSmurf }
 )(Smurfs);
